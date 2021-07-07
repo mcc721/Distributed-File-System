@@ -1,0 +1,22 @@
+syntax = "proto3";
+package myserver;
+option cc_generic_services = true;
+
+message FileInfo {
+    string Name = 1;
+    string type = 2;
+    string content =3;
+}
+message FileRequest {
+    int32 cmd = 1;
+    string filename = 2;
+    string info = 3;
+}
+
+message FileResponse {
+    repeated FileInfo fileinfo  = 1;
+}
+
+service EchoServer {
+    rpc Echo(FileRequest) returns (FileResponse);
+}
